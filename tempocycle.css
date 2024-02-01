@@ -47,6 +47,8 @@ span {
 
 #config {
     margin-top: 5%;
+    margin-left:2%;
+    margin-right:2%;
 }
 
 #clear {
@@ -116,11 +118,11 @@ span {
 }
 
 .numbersection {
-    display: flex; flex-direction: column; text-align: center;
+    display: flex; flex-direction: column; text-align: center; font-size: x-large;
 }
 
 .textsection {
-    display: flex; flex-direction: column; font-size: .8em; font-family: Arial;
+    display: flex; flex-direction: column; font-size: large; font-family: Arial;
 }
 
 .checksection {
