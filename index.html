@@ -12,113 +12,101 @@
         <div id="title">
             <img id="logo" src="./TempoCycleLogoWText.jpg"/>
         </div>
-        <div id="config" style="display: none;"><div>
-            <h1 style="margin-left: 35px; margin-bottom: 10px">Interval Timer</h1>
+        <div id="config" style="display: none;">
+            <div class="configbox">
+            <h1 style="margin-bottom: 10px; margin-left: 7%;">Interval Timer</h1>
 
-            <div class="loopsection" style="display: flex;">
-                <button style="opacity: 0;" class="controls">-</button>
-                <div class="loopcontainer">
-                    <div class="numbersection">
-                        <input id="timeA" class="num" type="number" value="3" step="1"></input>
-                        <span>Time (in seconds)</span>
-                    </div>
-                    <div class="textsection">
-                        <div class="checksection">
-                            <button id="everySecondA" class="checkbutton" value=""></button>
-                            <span>beep every second</span>
-                        </div>
-                        <div class="checksection">
-                            <button id="halfIntervalA" class="checkbutton" value=""></button>
-                            <span>beep every halftime</span>
-                        </div>
-                        <div class="checksection">
-                            <button id="countDownA" class="checkbutton" value=""></button>
-                            <span>3 second countdown</span>
-                        </div>
-                    </div>         
+            <div id="loopA" class="loopcontainer">
+                <div class="numbersection">
+                    <input id="timeA" class="num" type="number" value="3" step="1"></input>
+                    <span>Time (in seconds)</span>
                 </div>
-                <button class="add controls">+</button>
-            </div>
-
-            <div id="loopB" class="loopsection" style="display: none;">
-                <button class="remove controls">-</button>
-                <div class="loopcontainer">
-                    <div class="numbersection">
-                        <input id="timeB" class="num" type="number" value="3" step="1"></input>
-                        <span>Time (in seconds)</span>
+                <div class="textsection">
+                    <div class="checksection">
+                        <button id="everySecondA" class="checkbutton" value=""></button>
+                        <span>beep every second</span>
                     </div>
-                    <div class="textsection">
-                        <div class="checksection">
-                            <button id="everySecondB" class="checkbutton" value=""></button>
-                            <span>beep every second</span>
-                        </div>
-                        <div class="checksection">
-                            <button id="halfIntervalB" class="checkbutton" value=""></button>
-                            <span>beep every halftime</span>
-                        </div>
-                        <div class="checksection">
-                            <button id="countDownB" class="checkbutton" value=""></button>
-                            <span>3 second countdown</span>
-                        </div>
+                    <div class="checksection">
+                        <button id="halfIntervalA" class="checkbutton" value=""></button>
+                        <span>beep every halftime</span>
                     </div>
-                </div>
-                <button class="add controls">+</button>
+                    <div class="checksection">
+                        <button id="countDownA" class="checkbutton" value=""></button>
+                        <span>3 second countdown</span>
+                    </div>
+                </div>         
             </div>
             
-            <div id="loopC" class="loopsection" style="display: none;">
-                <button class="remove controls">-</button>
-                <div class="loopcontainer">
-                    <div class="numbersection">
-                        <input id="timeC" class="num" type="number" value="3" step="1"></input>
-                        <span>Time (in seconds)</span>
+            <div id="loopB" class="loopcontainer invis">
+                <div class="numbersection">
+                    <input id="timeB" class="num" type="number" value="3" step="1"></input>
+                    <span>Time (in seconds)</span>
+                </div>
+                <div class="textsection">
+                    <div class="checksection">
+                        <button id="everySecondB" class="checkbutton" value=""></button>
+                        <span>beep every second</span>
                     </div>
-                    <div class="textsection">
-                        <div class="checksection">
-                            <button id="everySecondC" class="checkbutton" value=""></button>
-                            <span>beep every second</span>
-                        </div>
-                        <div class="checksection">
-                            <button id="halfIntervalC" class="checkbutton" value=""></button>
-                            <span>beep every halftime</span>
-                        </div>
-                        <div class="checksection">
-                            <button id="countDownC" class="checkbutton" value=""></button>
-                            <span>3 second countdown</span>
-                        </div>
+                    <div class="checksection">
+                        <button id="halfIntervalB" class="checkbutton" value=""></button>
+                        <span>beep every halftime</span>
+                    </div>
+                    <div class="checksection">
+                        <button id="countDownB" class="checkbutton" value=""></button>
+                        <span>3 second countdown</span>
                     </div>
                 </div>
-                <button class="add controls">+</button>
+            </div>
+            
+            <div id="loopC" class="loopcontainer invis">
+                <div class="numbersection">
+                    <input id="timeC" class="num" type="number" value="3" step="1"></input>
+                    <span>Time (in seconds)</span>
+                </div>
+                <div class="textsection">
+                    <div class="checksection">
+                        <button id="everySecondC" class="checkbutton" value=""></button>
+                        <span>beep every second</span>
+                    </div>
+                    <div class="checksection">
+                        <button id="halfIntervalC" class="checkbutton" value=""></button>
+                        <span>beep every halftime</span>
+                    </div>
+                    <div class="checksection">
+                        <button id="countDownC" class="checkbutton" value=""></button>
+                        <span>3 second countdown</span>
+                    </div>
+                </div>
             </div>
 
-            <div id="loopD" class="loopsection" style="display: none;">
-                <button class="remove controls">-</button>
-                <div class="loopcontainer">
-                    <div class="numbersection">
-                        <input id="timeD" class="num" type="number" value="3" step="1"></input>
-                        <span>Time (in seconds)</span>
+            <div id="loopD" class="loopcontainer invis">
+                <div class="numbersection">
+                    <input id="timeD" class="num" type="number" value="3" step="1"></input>
+                    <span>Time (in seconds)</span>
+                </div>
+                <div class="textsection">
+                    <div class="checksection">
+                        <button id="everySecondD" class="checkbutton" value=""></button>
+                        <span>beep every second</span>
                     </div>
-                    <div class="textsection">
-                        <div class="checksection">
-                            <button id="everySecondD" class="checkbutton" value=""></button>
-                            <span>beep every second</span>
-                        </div>
-                        <div class="checksection">
-                            <button id="halfIntervalD" class="checkbutton" value=""></button>
-                            <span>beep every halftime</span>
-                        </div>
-                        <div class="checksection">
-                            <button id="countDownD" class="checkbutton" value=""></button>
-                            <span>3 second countdown</span>
-                        </div>
+                    <div class="checksection">
+                        <button id="halfIntervalD" class="checkbutton" value=""></button>
+                        <span>beep every halftime</span>
+                    </div>
+                    <div class="checksection">
+                        <button id="countDownD" class="checkbutton" value=""></button>
+                        <span>3 second countdown</span>
                     </div>
                 </div>
-                <button style="opacity: 0;" class="controls">+</button>
             </div>
 
             <div style="display: flex; justify-content: space-evenly; padding: 2%">
+                <button id="minus" class="remove controls">-</button>
                 <button class="controls" onclick="configToRunning(); state='A'; loop();">▷</button>
+                <button id="plus" class="add controls">+</button>
             </div>
             </div>
+            
         </div>
         <div id="running" style="display: none;">
             <div class="controls countblock">

@@ -1,7 +1,9 @@
 let loopsObject = {};
+let loopEnum = {};
 let loopLetter = ["A", "B", "C", "D"];
 let state = "A"
 let counter = 0;
+let loopNumber = 0;
 
 //Shows a title screen, a setup screen for the timer, and a simple counter display
 function titleToConfig() {
@@ -22,6 +24,7 @@ function configToRunning() {
     document.getElementById("running").style.display = "flex";
     document.getElementById("config").classList.add("animate__animated","animate__fadeOutDown");
     document.getElementById("running").classList.add("animate__animated","animate__fadeInUp");
+    window.scrollTo(0,0);
     document.body.style.overflow = "hidden";
     setTimeout(configToRunningAnimationCleanUp, 1000);
 }
@@ -64,6 +67,11 @@ function loadAllVars() {
     loopsObject.loopB = false;
     loopsObject.loopC = false;
     loopsObject.loopD = false;
+    loopEnum = {0: document.getElementById("loopA"),
+                1: document.getElementById("loopB"),
+                2: document.getElementById("loopC"),
+                3: document.getElementById("loopD"),
+    }
 }
 
 function loop() {
@@ -117,21 +125,33 @@ for (let el of o){
     });
 }
 
-for (let addbutton of document.getElementsByClassName("add")){
-    addbutton.addEventListener("click", () =>{
-        let next = addbutton.parentElement.nextElementSibling
-        next.style.setProperty('display', 'flex');
+//logic for activating and animating different loops and via clicking 
+document.getElementById("plus").addEventListener("click", () =>{
+    if (loopNumber < 3) {
+        loopNumber += 1;
+        let next = loopEnum[loopNumber];
+        next.classList.toggle("invis");
         loopsObject[next.id] = true;
-    });
-}
+        if (loopNumber === 3) {
+            document.getElementById("plus").style.setProperty('opacity', 0);
+        }
+        else if (loopNumber === 1) {
+            document.getElementById("minus").style.setProperty('opacity', 1);
+        }
+    }
+});
 
-for (let minusbutton of document.getElementsByClassName("remove")){
-    minusbutton.addEventListener("click", () =>{
-        let curr = minusbutton.parentElement
-        curr.style.setProperty('display', 'none');
+document.getElementById("minus").addEventListener("click", () =>{
+    if (loopNumber > 0) {
+        let curr = loopEnum[loopNumber];
+        curr.classList.toggle("invis");
         loopsObject[curr.id] = false;
-    });
-if (window.innerWidth < 500) {
-    document.getElementsByTagName("meta")[0].setAttribute("content", "width=device-width, initial-scale=.63");
-}
-}
+        loopNumber -= 1;
+        if (loopNumber === 0) {
+            document.getElementById("minus").style.setProperty('opacity', 0);
+        }
+        else if (loopNumber === 2) {
+            document.getElementById("plus").style.setProperty('opacity', 1);
+        }
+    }
+});
