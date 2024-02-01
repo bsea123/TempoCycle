@@ -126,4 +126,7 @@ for (let minusbutton of document.getElementsByClassName("remove")){
         curr.style.setProperty('display', 'none');
         loopsObject[curr.id] = false;
     });
+if (window.innerWidth < 500) {
+    document.getElementsByTagName("meta")[0].setAttribute("content", "width=device-width, initial-scale=.7");
+}
 }
