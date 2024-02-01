@@ -1,161 +1,127 @@
-<!DOCTYPE html>
-    <script>
-        /*let timeA, everySecondA, halfIntervalA, countDownA,
-            timeB, everySecondB, halfIntervalB, countDownB, loopB,
-            timeC, everySecondC, halfIntervalC, countDownC, loopC,
-            timeD, everySecondD, halfIntervalD, countDownD, loopD;*/
-        let loopsObject = {};
-        let loopLetter = ["A", "B", "C", "D"];
-        let state = "A"
-        let counter = 0;
-        //let loop = "A";
-
-        function loadVars() {
-            timeA = document.getElementById("timeA");
-            everySecond = document.getElementById("everySecond");
-            halfInterval = document.getElementById("halfInterval");
-            countDown = document.getElementById("countDown");
-        }
-
-        function loadAllVars() {
-            loopLetter.forEach((letter) => {
-                loopsObject[`time${letter}`] = document.getElementById(`time${letter}`);
-                loopsObject[`everySecond${letter}`] = document.getElementById(`everySecond${letter}`);
-                loopsObject[`halfInterval${letter}`] = document.getElementById(`halfInterval${letter}`);
-                loopsObject[`countDown${letter}`] = document.getElementById(`countDown${letter}`);
-                loopsObject[`loop${letter}`] = document.getElementById(`loop${letter}`);
-            });
-        }
-
-        function playASound() {
-            document.getElementById("high").play();
-        }
-        
-        function loop() {
-            let f = setInterval(loopBySeconds, 1000);
-            document.getElementById("clear").value = f;
-        }
-
-        function loopBySeconds() {
-            //change display
-            //check for what kind of beep using mod
-            //count up
-            
-            //if everysecond, play every second
-            //else check for pertinent numbers (half, count-up, actual interval)
-                //if none pertinent, counter ++
-                //if number, play correct sound and counter++
-            console.log(loopsObject["time"+state].value, counter);
-            console.log(parseInt(loopsObject["time"+state].value)/2 >> 0);
-            console.log(loopsObject["everySecond"+state].checked);
-            console.log(state);
-            if (loopsObject["time"+state].value == counter) { //make timing a real number pls
-                //play highBeep
-                //reset counter
-                document.getElementById("high").play();
-                counter = 0;
-                //state chenge
-                if (state === "A" && loopsObject.loopB.checked) {state="B";}
-                else if (state === "B" && loopsObject.loopC.checked) {state="C";}
-                else if (state === "C" && loopsObject.loopD.checked) {state="D";}
-                else {state="A";}
-            }
-            else if (loopsObject["everySecond"+state].checked === true) {
-                //play lowBeep
-                document.getElementById("low").play();
-            }
-            else {
-                if (loopsObject["halfInterval"+state].checked === true) {
-                    //if halfInterval == the number
-                    if (parseInt(loopsObject["time"+state].value)/2 >> 0 == counter) {
-                        document.getElementById("low").play();
-                    }
-                } 
-                if (loopsObject["countDown"+state].checked === true) {   
-                    if (counter >= parseInt(loopsObject["time"+state].value)-3) {
-                        document.getElementById("low").play();
-                    }
-                }
-            }
-            counter++;
-        }
-
-    </script>
-    <style>
-        .noVis
-            {display:block;}
-    </style>
+<!DOCTYPE Html>
+    <head>
+        <link rel="stylesheet" href="./tempocycle.css"/>
+    </head>
     <body onload="loadAllVars();">
         <audio id="high"><source src="./highBloop.wav"></audio>
         <audio id="low"><source src="./lowBloop.wav"></audio>
-        
-        <div>
-            <input id="timeA" type="number" value="3" step="1">Loop A (time in sec)</input>
-            <input type="checkbox" id="everySecondA">
-                <label for="everySecond">play beeps every second</label>
-            </input>
-            <input type="checkbox" id="halfIntervalA">
-                <label for="halfInterval">play beeps every half interval</label>
-            </input>
-            <input type="checkbox" id="countDownA">
-                <label for="countDown">play beeps 3 seconds before every interval</label>
-            </input>
-            <input type="checkbox" id="loopA" class="noVis" checked>
-                <label for="loopA" class="noVis">Activate this loop</label>
-            </input>
+        <div id="title">
+            <img id="logo" src="./TempoCycleLogoWText.jpg"/>
         </div>
-        <div id="sectionB">
-            <input id="timeB" type="number" value="3" step="1">Loop B (time in sec)</input>
-            <input type="checkbox" id="everySecondB">
-                <label for="everySecond">play beeps every second</label>
-            </input>
-            <input type="checkbox" id="halfIntervalB">
-                <label for="halfInterval">play beeps every half interval</label>
-            </input>
-            <input type="checkbox" id="countDownB">
-                <label for="countDown">play beeps 3 seconds before every interval</label>
-            </input>
-            <input type="checkbox" id="loopB">
-                <label for="loopB">Activate this loop</label>
-            </input>
-        </div>
+        <div id="config" style="display: none;"><div>
+            <h2 style="margin-left: 45px;">Interval Timer</h2>
 
-        <div id="sectionC">
-            <input id="timeC" type="number" value="3" step="1">Loop C (time in sec)</input>
-            <input type="checkbox" id="everySecondC">
-                <label for="everySecond">play beeps every second</label>
-            </input>
-            <input type="checkbox" id="halfIntervalC">
-                <label for="halfInterval">play beeps every half interval</label>
-            </input>
-            <input type="checkbox" id="countDownC">
-                <label for="countDown">play beeps 3 seconds before every interval</label>
-            </input>
-            <input type="checkbox" id="loopC">
-                <label for="loopC">Activate this loop</label>
-            </input>
-        </div>
+            <div class="loopsection" style="display: flex;">
+                <button style="opacity: 0;" class="controls">-</button>
+                <div class="loopcontainer">
+                    <div class="numbersection">
+                        <input id="timeA" class="num" type="number" value="3" step="1"></input>
+                        <span>Time (in seconds)</span>
+                    </div>
+                    <div class="textsection">
+                        <div class="checksection">
+                            <button id="everySecondA" class="checkbutton" value=""></button>
+                            <span>beep every second</span>
+                        </div>
+                        <div class="checksection">
+                            <button id="halfIntervalA" class="checkbutton" value=""></button>
+                            <span>beep every halftime</span>
+                        </div>
+                        <div class="checksection">
+                            <button id="countDownA" class="checkbutton" value=""></button>
+                            <span>3 second countdown</span>
+                        </div>
+                    </div>         
+                </div>
+                <button class="add controls">+</button>
+            </div>
 
-        <div id="sectionD">
-            <input id="timeD" type="number" value="3" step="1">Loop D (time in sec)</input>
-            <input type="checkbox" id="everySecondD">
-                <label for="everySecond">play beeps every second</label>
-            </input>
-            <input type="checkbox" id="halfIntervalD">
-                <label for="halfInterval">play beeps every half interval</label>
-            </input>
-            <input type="checkbox" id="countDownD">
-                <label for="countDown">play beeps 3 seconds before every interval</label>
-            </input>
-            <input type="checkbox" id="loopD">
-                <label for="loopD">Activate this loop</label>
-            </input>
-        </div>
+            <div id="loopB" class="loopsection" style="display: none;">
+                <button class="remove controls">-</button>
+                <div class="loopcontainer">
+                    <div class="numbersection">
+                        <input id="timeB" class="num" type="number" value="3" step="1"></input>
+                        <span>Time (in seconds)</span>
+                    </div>
+                    <div class="textsection">
+                        <div class="checksection">
+                            <button id="everySecondB" class="checkbutton" value=""></button>
+                            <span>beep every second</span>
+                        </div>
+                        <div class="checksection">
+                            <button id="halfIntervalB" class="checkbutton" value=""></button>
+                            <span>beep every halftime</span>
+                        </div>
+                        <div class="checksection">
+                            <button id="countDownB" class="checkbutton" value=""></button>
+                            <span>3 second countdown</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="add controls">+</button>
+            </div>
+            
+            <div id="loopC" class="loopsection" style="display: none;">
+                <button class="remove controls">-</button>
+                <div class="loopcontainer">
+                    <div class="numbersection">
+                        <input id="timeC" class="num" type="number" value="3" step="1"></input>
+                        <span>Time (in seconds)</span>
+                    </div>
+                    <div class="textsection">
+                        <div class="checksection">
+                            <button id="everySecondC" class="checkbutton" value=""></button>
+                            <span>beep every second</span>
+                        </div>
+                        <div class="checksection">
+                            <button id="halfIntervalC" class="checkbutton" value=""></button>
+                            <span>beep every halftime</span>
+                        </div>
+                        <div class="checksection">
+                            <button id="countDownC" class="checkbutton" value=""></button>
+                            <span>3 second countdown</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="add controls">+</button>
+            </div>
 
-        <button id="begin" onclick="loop(); state='A';">Start it up!</button>
-        <button id="clear" value="0" onclick="clearInterval(this.value); counter=0;">ClearInterval</button>
-        <button id="addLoop">Add Another Loop (Not Implemented)</button>
-        <button id="testHigh" onclick="document.getElementById('high').play()">Test High Beep</button>
-        <button id="testLow" onclick="document.getElementById('low').play()">Test Low Beep</button>
+            <div id="loopD" class="loopsection" style="display: none;">
+                <button class="remove controls">-</button>
+                <div class="loopcontainer">
+                    <div class="numbersection">
+                        <input id="timeD" class="num" type="number" value="3" step="1"></input>
+                        <span>Time (in seconds)</span>
+                    </div>
+                    <div class="textsection">
+                        <div class="checksection">
+                            <button id="everySecondD" class="checkbutton" value=""></button>
+                            <span>beep every second</span>
+                        </div>
+                        <div class="checksection">
+                            <button id="halfIntervalD" class="checkbutton" value=""></button>
+                            <span>beep every halftime</span>
+                        </div>
+                        <div class="checksection">
+                            <button id="countDownD" class="checkbutton" value=""></button>
+                            <span>3 second countdown</span>
+                        </div>
+                    </div>
+                </div>
+                <button style="opacity: 0;" class="controls">+</button>
+            </div>
+
+            <div style="display: flex; justify-content: space-evenly; padding: 2%">
+                <button class="controls" onclick="configToRunning(); state='A'; loop();">▷</button>
+            </div>
+            </div>
+        </div>
+        <div id="running" style="display: none;">
+            <div class="controls countblock">
+                <h1 id="timecounter" style="font-size:15vw; margin: 10% 0px;">0</h1>
+                <button id="clear" class="controls" style="font-size: larger;" onclick="runningToConfig(); clearInterval(this.value); counter=0; this.previousElementSibling.innerText='0';">◼ Stop</button>
+            </div>
+        </div>
     </body>
+    <script type="text/javascript" src="./tempocycle.js"></script>
 </html>
