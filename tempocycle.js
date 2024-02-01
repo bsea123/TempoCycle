@@ -47,7 +47,11 @@ function runningToConfigAnimationCleanUp() {
     document.getElementById("running").classList.remove("animate__animated","animate__fadeOutDown");
     document.getElementById("config").classList.remove("animate__animated","animate__fadeInUp");
 }
-
+function clearTimer() {
+    runningToConfig(); 
+    counter=0; 
+    document.getElementById('timecounter').classList.remove('animate__animated','animate__pulse');
+}
 function loadAllVars() {
     loopLetter.forEach((letter) => {
         loopsObject[`time${letter}`] = document.getElementById(`time${letter}`);
@@ -69,12 +73,13 @@ function loop() {
 
 function loopBySeconds() {
     //update counter
+    
     document.getElementById("timecounter").innerText = counter;
+    document.getElementById("timecounter").classList.add("animate__animated","animate__pulse");
     if (loopsObject["time"+state].value == counter) {
         //plays high beep
         document.getElementById("high").play();
         counter = 0;
-        document.getElementById("timecounter").innerText = counter;
         //loop controls; changes to the next appropriate loop
         if (state === "A" && loopsObject.loopB) {state="B";}
         else if (state === "B" && loopsObject.loopC) {state="C";}

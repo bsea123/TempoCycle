@@ -240,4 +240,6 @@ span {
     animation-name: pulse;
     -webkit-animation-timing-function: ease-in-out;
     animation-timing-function: ease-in-out;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
   }
