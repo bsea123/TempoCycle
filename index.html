@@ -6,6 +6,13 @@
         <link rel="icon" href="TempoCycleIcon.png" />
         <title>TempoCycle</title>
     </head>
+    <!-- Register the app's service worker. -->
+    <script>
+        if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("serviceworker.js");
+        }
+    </script>
+  
     <body style="overflow: hidden;" onload="loadAllVars();">
         <audio id="high"><source src="./highBloop.wav"></audio>
         <audio id="low"><source src="./lowBloop.wav"></audio>
