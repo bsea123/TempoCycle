@@ -1,0 +1,15 @@
+{
+    "name": "TempoCycle",
+    "description": "An  simple interval timer for workouts, stretches, and more",
+    "start_url": "/index.html",
+    "theme_color": "#030a10",
+    "background_color": "#030a10",
+    "display": "standalone",
+    "icons": [
+          {
+        "src": "TempoCycleIcon.png",
+        "sizes": "512x512"
+      }
+    ]
+}
+  
